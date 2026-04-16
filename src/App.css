@@ -1,0 +1,63 @@
+* {
+  margin    : 0;
+  padding   : 0;
+  list-style: none;
+  box-sizing: border-box;
+  margin    : 5px;
+}
+
+.box {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.box-bg {
+  background-color: darkblue;
+  border-radius   : 6px;
+  padding         : 20px;
+  width           : 300px;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  color    : white;
+  font-size: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.x-y-center {
+  align-items    : center;
+  justify-content: center;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+button {
+  border          : none;
+  background-color: white;
+  color           : black;
+  font-size       : 18px;
+  padding         : 9px;
+  border-radius   : 6px;
+  cursor          : pointer;
+}
+
+button:active {
+  background-color: aliceblue;
+}
