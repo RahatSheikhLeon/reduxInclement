@@ -1,50 +1,30 @@
 import { useState } from "react";
 import { Counter } from "./Counter";
 import { Stats } from "./Stats";
+import { useDispatch, useSelector } from "react-redux";
+import { dicriment, incriment } from "./features/counters/countersSlice";
 
 function App() {
-  const [counterData, setCountData] = useState([
-    {
-      id: 1,
-      value: 0,
-    },
-    {
-      id: 2,
-      value: 0,
-    },
-  ]);
+  const counters = useSelector((state) => state.counters);
+  const dispatch = useDispatch();
 
-  const incrementHandel = (counterID) => {
-    const updatedCounters = counterData.map((counter) => {
-      if (counterID == counter.id) {
-        return {
-          ...counter,
-          value: counter.value + 1,
-        };
-      }
-      return counter;
-    });
-     setCountData(updatedCounters)
-  };
-  const dicrementHandel = (counterID) => {
-    const updatedCounters = counterData.map((counter) => {
-      if (counterID == counter.id) {
-        return {
-          ...counter,
-          value: counter.value - 1,
-        };
-      }
-      return counter;
-    });
+  const incrementHandel = (counterId) => {
+    dispatch(incriment(counterId))
+  }
+   const dicrementHandel = (counterId) => {
+    dispatch(dicriment(counterId))
+  }
 
-    setCountData(updatedCounters);
-  };
+  const totalValue = counters.reduce(
+    (accumulator, counterValue) => accumulator + counterValue.value,
+    0,
+  );
 
   return (
     <>
       <section>
         <div className="box">
-          {counterData.map((counter) => (
+          {counters.map((counter) => (
             <Counter
               key={counter.id}
               counterValue={counter.value}
@@ -53,7 +33,7 @@ function App() {
             />
           ))}
 
-          <Stats counterData={counterData} />
+          <Stats totalValue={totalValue} />
         </div>
       </section>
     </>
